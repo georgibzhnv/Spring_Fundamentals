@@ -21,6 +21,9 @@ public class OfferEntity extends BaseEntity{
     @ManyToOne
     private ModelEntity model;
 
+    @ManyToOne
+    private UserEntity user;
+
     public String getDescription() {
         return description;
     }
@@ -85,6 +88,14 @@ public class OfferEntity extends BaseEntity{
         this.model = model;
     }
 
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OfferEntity{");
@@ -96,6 +107,7 @@ public class OfferEntity extends BaseEntity{
         sb.append(", year=").append(year);
         sb.append(", transmission=").append(transmission);
         sb.append(", model=").append(model);
+        sb.append(", user=").append(user);
         sb.append(", id=").append(id);
         sb.append(", created=").append(created);
         sb.append(", updated=").append(updated);
