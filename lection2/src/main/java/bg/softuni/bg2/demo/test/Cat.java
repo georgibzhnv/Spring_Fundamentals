@@ -1,13 +1,10 @@
 package bg.softuni.bg2.demo.test;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-
-public class Dog implements Animal{
-
+public class Cat implements Animal{
     @Override
     public String makeNoise() {
-        return "waf-waf";
+        return "meow";
     }
 }
