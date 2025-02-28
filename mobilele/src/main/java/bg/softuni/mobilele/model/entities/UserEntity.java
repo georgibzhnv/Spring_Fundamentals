@@ -1,8 +1,7 @@
-package bg.softuni.mobilele.entities;
+package bg.softuni.mobilele.model.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.util.List;

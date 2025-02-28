@@ -1,8 +1,6 @@
-package bg.softuni.mobilele.entities;
+package bg.softuni.mobilele.model.entities;
 
 import jakarta.persistence.*;
-
-import java.time.Instant;
 
 @Entity
 @Table(name = "brands")
