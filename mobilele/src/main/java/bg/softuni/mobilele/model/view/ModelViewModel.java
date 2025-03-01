@@ -30,6 +30,26 @@ public class ModelViewModel {
         return endYear;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCategory(ModelCategory category) {
+        this.category = category;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
+    }
+
+    public void setEndYear(Integer endYear) {
+        this.endYear = endYear;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ModelViewModel{");

@@ -4,6 +4,8 @@ import bg.softuni.mobilele.model.entities.enums.EngineEnum;
 import bg.softuni.mobilele.model.entities.enums.TransmissionEnum;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "offers")
 public class OfferEntity extends BaseEntity{
@@ -14,15 +16,15 @@ public class OfferEntity extends BaseEntity{
     private EngineEnum engine;
     private String imageUrl;
     private int mileage;
-    private int price;
+    private BigDecimal price;
     private int year;
     @Enumerated(EnumType.STRING)
     private TransmissionEnum transmission;
     @ManyToOne
     private ModelEntity model;
 
-    @ManyToOne
-    private UserEntity user;
+//    @ManyToOne
+//    private UserEntity user;
 
     public String getDescription() {
         return description;
@@ -56,11 +58,11 @@ public class OfferEntity extends BaseEntity{
         this.mileage = mileage;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -87,14 +89,14 @@ public class OfferEntity extends BaseEntity{
     public void setModel(ModelEntity model) {
         this.model = model;
     }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
+//
+//    public UserEntity getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(UserEntity user) {
+//        this.user = user;
+//    }
 
     @Override
     public String toString() {
@@ -107,7 +109,7 @@ public class OfferEntity extends BaseEntity{
         sb.append(", year=").append(year);
         sb.append(", transmission=").append(transmission);
         sb.append(", model=").append(model);
-        sb.append(", user=").append(user);
+//        sb.append(", user=").append(user);
         sb.append(", id=").append(id);
         sb.append(", created=").append(created);
         sb.append(", updated=").append(updated);

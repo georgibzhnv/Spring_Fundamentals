@@ -3,12 +3,17 @@ package bg.softuni.mobilele;
 import bg.softuni.mobilele.model.entities.BaseEntity;
 import bg.softuni.mobilele.model.entities.BrandEntity;
 import bg.softuni.mobilele.model.entities.ModelEntity;
+import bg.softuni.mobilele.model.entities.OfferEntity;
+import bg.softuni.mobilele.model.entities.enums.EngineEnum;
 import bg.softuni.mobilele.model.entities.enums.ModelCategory;
+import bg.softuni.mobilele.model.entities.enums.TransmissionEnum;
 import bg.softuni.mobilele.repository.BrandRepository;
 import bg.softuni.mobilele.repository.ModelRepository;
+import bg.softuni.mobilele.repository.OfferRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
@@ -17,10 +22,12 @@ public class DBInit implements CommandLineRunner {
 
     private final ModelRepository modelRepository;
     private final BrandRepository brandRepository;
+    private final OfferRepository offerRepository;
 
-    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository) {
+    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository) {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
+        this.offerRepository = offerRepository;
     }
 
     @Override
@@ -36,9 +43,25 @@ public class DBInit implements CommandLineRunner {
 
         brandRepository.saveAll(List.of(fordBrand,hondaBrand));
 
-        initFiesta(fordBrand);
+        ModelEntity fiestaModel = initFiesta(fordBrand);
         initEscort(fordBrand);
         initNC750S(hondaBrand);
+        createFiestaOffer(fiestaModel);
+    }
+
+    private void createFiestaOffer(ModelEntity modelEntity){
+        OfferEntity fiestaOffer = new OfferEntity();
+        fiestaOffer.setEngine(EngineEnum.GASOLINE);
+        fiestaOffer.setImageUrl("https://www.automoli.com/common/vehicles/_assets/img/gallery/f87/ford-fiesta-active.jpg");
+        fiestaOffer.setMileage(80000);
+        fiestaOffer.setPrice(BigDecimal.valueOf(10000));
+        fiestaOffer.setYear(2022);
+        fiestaOffer.setDescription("Karana e ot nemska baba. Zimata v garaj.");
+        fiestaOffer.setTransmission(TransmissionEnum.MANUAL);
+        fiestaOffer.setModel(modelEntity);
+        setCurrentTimestamps(fiestaOffer);
+
+        offerRepository.save(fiestaOffer);
     }
 
 

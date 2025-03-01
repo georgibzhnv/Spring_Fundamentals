@@ -7,6 +7,7 @@ import bg.softuni.mobilele.model.view.ModelViewModel;
 import bg.softuni.mobilele.repository.ModelRepository;
 import bg.softuni.mobilele.service.BrandService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class BrandServiceImpl implements BrandService {
     private final ModelRepository modelRepository;
     private final ModelMapper modelMapper;
 
+    @Autowired
     public BrandServiceImpl(ModelRepository modelRepository, ModelMapper modelMapper) {
         this.modelRepository = modelRepository;
         this.modelMapper = modelMapper;
@@ -46,12 +48,13 @@ public class BrandServiceImpl implements BrandService {
             brandViewModelOpt.get().addModel(newModelViewModel);
 
         });
-
         return result;
     }
+
     private static Optional<BrandViewModel> findByName(List<BrandViewModel>allModels, String name){
         return allModels
                 .stream()
-                .filter(m->m.getName().equals(name)).findAny();
+                .filter(m->m.getName().equals(name))
+                .findAny();
     }
 }
