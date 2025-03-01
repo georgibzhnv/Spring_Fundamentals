@@ -3,6 +3,7 @@ package bg.softuni.mobilele.service.impl;
 import bg.softuni.mobilele.model.entities.BrandEntity;
 import bg.softuni.mobilele.model.entities.ModelEntity;
 import bg.softuni.mobilele.model.view.BrandViewModel;
+import bg.softuni.mobilele.model.view.ModelViewModel;
 import bg.softuni.mobilele.repository.ModelRepository;
 import bg.softuni.mobilele.service.BrandService;
 import org.modelmapper.ModelMapper;
@@ -16,26 +17,34 @@ import java.util.Optional;
 public class BrandServiceImpl implements BrandService {
 
     private final ModelRepository modelRepository;
+    private final ModelMapper modelMapper;
 
-    public BrandServiceImpl(ModelRepository modelRepository) {
+    public BrandServiceImpl(ModelRepository modelRepository, ModelMapper modelMapper) {
         this.modelRepository = modelRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public List<BrandViewModel> getAllBrands() {
-        List<ModelEntity>allModels = modelRepository.findAll();
-        List<BrandViewModel>result = new ArrayList<>();
 
-        ModelMapper mapper = new ModelMapper();
+        List<BrandViewModel>result = new ArrayList<>();
+        List<ModelEntity>allModels = modelRepository.findAll();
 
         allModels.forEach(me->{
             BrandEntity brandEntity= me.getBrand();
-            Optional<BrandViewModel>brandViewModelOpt = findByName(result,brandEntity.getName());
+
+            Optional<BrandViewModel>brandViewModelOpt = findByName(result,
+                    brandEntity.getName());
             if(!brandViewModelOpt.isPresent()){
                 BrandViewModel newBrandViewModel = new BrandViewModel();
-                mapper.map(brandEntity,newBrandViewModel);
+                modelMapper.map(brandEntity,newBrandViewModel);
                 result.add(newBrandViewModel);
+                brandViewModelOpt = Optional.of(newBrandViewModel);
             }
+            ModelViewModel newModelViewModel = new ModelViewModel();
+            modelMapper.map(me,newModelViewModel);
+            brandViewModelOpt.get().addModel(newModelViewModel);
+
         });
 
         return result;
