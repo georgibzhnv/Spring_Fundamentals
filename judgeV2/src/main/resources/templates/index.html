@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+<body>
+
+<div class="container">
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/home">Dashboard</a>
+        <a href="/users/login">Login</a>
+        <a href="/users/register">Register</a>
+    </nav>
+    <h1>Welcome to JudgeV2</h1>
+    <p>This is a platform where users can check their homework, view assignments, and more.</p>
+</div>
+
+<!-- Include footer fragment -->
+<th:block th:include="~{fragments/footer}"></th:block>
+
+</body>
+</html>

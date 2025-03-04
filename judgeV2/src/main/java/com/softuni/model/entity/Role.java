@@ -11,6 +11,10 @@ public class Role extends BaseEntity{
 
     private RoleNameEnum name;
 
+    public Role(RoleNameEnum name) {
+        this.name= name;
+    }
+
     public Role() {
     }
 
