@@ -3,6 +3,7 @@ package com.softuni.web;
 import com.softuni.model.binding.UserRegisterBinding;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,7 +19,10 @@ public class UserController {
         return "login";
     }
     @GetMapping("/register")
-    public String register(){
+    public String register(Model model){
+        if (!model.containsAttribute("userRegisterBindingModel")){
+           model.addAttribute("userRegisterBindingModel",new UserRegisterBinding());
+        }
         return "register";
     }
 

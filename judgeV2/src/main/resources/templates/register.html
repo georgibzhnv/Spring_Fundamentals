@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="~{fragments/head}"></th:block>
 <body>
-
-<!-- Include footer fragment -->
-<th:block th:include="~{fragments/footer}"></th:block>
 
 <div class="container">
     <h2>Register</h2>
 
-    <form action="/users/register" method="post">
+    <form th:action="@{/users/register}" method="post" th:object="${userRegisterBindingModel}">
         <!-- Username -->
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" th:field="*{username}" required>
-
+        <div class="mx-auto">
+            <small class="text-danger">Username must be between 2 and 10 characters</small>
+        </div>
         <!-- Email -->
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" th:field="*{email}" required>
@@ -24,11 +23,11 @@ html lang="en" xmlns:th="http://www.thymeleaf.org">
 
         <!-- Password -->
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" th:field="*{password}" required minlength="6">
+        <input type="password" id="password" name="password" th:field="*{password}" required minlength="2">
 
         <!-- Confirm Password -->
         <label for="confirmedPassword">Confirm Password:</label>
-        <input type="password" id="confirmedPassword" name="confirmedPassword" th:field="*{confirmedPassword}" required minlength="6">
+        <input type="password" id="confirmedPassword" name="confirmedPassword" th:field="*{confirmedPassword}" required minlength="2">
 
         <button type="submit">Register</button>
     </form>
@@ -36,5 +35,7 @@ html lang="en" xmlns:th="http://www.thymeleaf.org">
     <p>Already have an account? <a href="/login">Login here</a></p>
 </div>
 
+<!-- Include footer fragment -->
+<th:block th:include="~{fragments/footer}"></th:block>
 </body>
 </html>
