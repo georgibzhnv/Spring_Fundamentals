@@ -1,6 +1,7 @@
 package com.softuni.model.binding;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
@@ -40,15 +41,6 @@ public class UserRegisterBinding {
     public void setConfirmedPassword(String confirmedPassword) {
         this.confirmedPassword = confirmedPassword;
     }
-    @NotNull
-    @Email(message = "Enter valid email address!")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Pattern(regexp = "https:\\/\\/github\\.com\\/.+",message = "Enter valid git address!")
     @NotNull
@@ -58,5 +50,14 @@ public class UserRegisterBinding {
 
     public void setGit(String git) {
         this.git = git;
+    }
+
+    @Email(message = "Invalid email!")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

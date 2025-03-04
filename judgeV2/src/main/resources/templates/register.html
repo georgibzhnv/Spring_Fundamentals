@@ -6,32 +6,37 @@
 <div class="container">
     <h2>Register</h2>
 
-    <form th:action="@{/users/register}" method="post" th:object="${userRegisterBindingModel}">
+    <form th:action="@{/users/register}" method="post" th:object="${userRegisterBinding}">
         <!-- Username -->
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" th:field="*{username}" required>
+        <input type="text" id="username" th:errorclass="bg-danger" name="username" th:field="*{username}" required>
         <div class="mx-auto">
-            <small class="text-danger">Username must be between 2 and 10 characters</small>
+            <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Username must be between 2 and 10 characters</small>
         </div>
-        <!-- Email -->
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" th:field="*{email}" required>
-
-        <!-- GitHub Profile -->
-        <label for="git">GitHub Profile:</label>
-        <input type="url" id="git" name="git" th:field="*{git}" placeholder="https://github.com/yourprofile">
-
         <!-- Password -->
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" th:field="*{password}" required minlength="2">
-
+        <input type="password" id="password" name="password" th:errorclass="bg-danger" th:field="*{password}" required minlength="2">
+        <div class="mx-auto">
+            <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Password must be at least 2 characters</small>
+        </div>
         <!-- Confirm Password -->
         <label for="confirmedPassword">Confirm Password:</label>
         <input type="password" id="confirmedPassword" name="confirmedPassword" th:field="*{confirmedPassword}" required minlength="2">
 
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:errorclass="bg-danger" th:field="*{email}" required>
+        <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Invalid email!</small>
+
+        <!-- GitHub Profile -->
+        <label for="git">GitHub Profile:</label>
+        <input type="url" id="git" name="git" th:errorclass="bg-danger" th:field="*{git}" placeholder="https://github.com/yourprofile">
+        <div class="mx-auto">
+            <small th:if="${#fields.hasErrors('git')}" th:errors="*{git}" class="text-danger">Invalid git address!</small>
+        </div>
+
         <button type="submit">Register</button>
     </form>
-
     <p>Already have an account? <a href="/login">Login here</a></p>
 </div>
 
