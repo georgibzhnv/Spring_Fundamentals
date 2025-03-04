@@ -5,5 +5,36 @@ html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- Include footer fragment -->
 <th:block th:include="~{fragments/footer}"></th:block>
+
+<div class="container">
+    <h2>Register</h2>
+
+    <form action="/users/register" method="post">
+        <!-- Username -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}" required>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required>
+
+        <!-- GitHub Profile -->
+        <label for="git">GitHub Profile:</label>
+        <input type="url" id="git" name="git" th:field="*{git}" placeholder="https://github.com/yourprofile">
+
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:field="*{password}" required minlength="6">
+
+        <!-- Confirm Password -->
+        <label for="confirmedPassword">Confirm Password:</label>
+        <input type="password" id="confirmedPassword" name="confirmedPassword" th:field="*{confirmedPassword}" required minlength="6">
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="/login">Login here</a></p>
+</div>
+
 </body>
 </html>
