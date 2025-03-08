@@ -1,16 +1,15 @@
 package bg.softuni.mobilele;
 
-import bg.softuni.mobilele.model.entities.BaseEntity;
-import bg.softuni.mobilele.model.entities.BrandEntity;
-import bg.softuni.mobilele.model.entities.ModelEntity;
-import bg.softuni.mobilele.model.entities.OfferEntity;
+import bg.softuni.mobilele.model.entities.*;
 import bg.softuni.mobilele.model.entities.enums.EngineEnum;
 import bg.softuni.mobilele.model.entities.enums.ModelCategory;
 import bg.softuni.mobilele.model.entities.enums.TransmissionEnum;
 import bg.softuni.mobilele.repository.BrandRepository;
 import bg.softuni.mobilele.repository.ModelRepository;
 import bg.softuni.mobilele.repository.OfferRepository;
+import bg.softuni.mobilele.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -23,11 +22,15 @@ public class DBInit implements CommandLineRunner {
     private final ModelRepository modelRepository;
     private final BrandRepository brandRepository;
     private final OfferRepository offerRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
-    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository) {
+    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository, PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
         this.offerRepository = offerRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -47,6 +50,18 @@ public class DBInit implements CommandLineRunner {
         initEscort(fordBrand);
         initNC750S(hondaBrand);
         createFiestaOffer(fiestaModel);
+
+        initAdmin();
+    }
+
+    private void initAdmin(){
+        UserEntity admin = new UserEntity();
+        admin.setFirstName("Петър");
+        admin.setLastName("Димитров");
+        admin.setUsername("admin");
+        admin.setPassword(passwordEncoder.encode("topsecret"));
+        setCurrentTimestamps(admin);
+        userRepository.save(admin);
     }
 
     private void createFiestaOffer(ModelEntity modelEntity){

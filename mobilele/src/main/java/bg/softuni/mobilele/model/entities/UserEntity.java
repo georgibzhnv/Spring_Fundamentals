@@ -11,29 +11,13 @@ import java.util.List;
 public class UserEntity extends BaseEntity{
 
     private String username;
+    private String password;
     private String firstName;
     private String lastName;
     private boolean isActive;
     private String imageUrl;
-
     @ManyToMany
     private List<UserRoleEntity>role;
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("UserEntity{");
-        sb.append("username='").append(username).append('\'');
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", isActive=").append(isActive);
-        sb.append(", imageUrl='").append(imageUrl).append('\'');
-        sb.append(", role=").append(role);
-        sb.append(", id=").append(id);
-        sb.append(", created=").append(created);
-        sb.append(", updated=").append(updated);
-        sb.append('}');
-        return sb.toString();
-    }
 
     public String getUsername() {
         return username;
@@ -82,4 +66,28 @@ public class UserEntity extends BaseEntity{
     public void setRole(List<UserRoleEntity> role) {
         this.role = role;
     }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("UserEntity{");
+        sb.append("username='").append(username).append('\'');
+        sb.append(", password='N/A").append('\'');
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", isActive=").append(isActive);
+        sb.append(", imageUrl='").append(imageUrl).append('\'');
+        sb.append(", role=").append(role);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
