@@ -26,7 +26,7 @@
       <ul class="navbar-nav mr-auto col-12 justify-content-between">
         <li class="nav-item"
         >
-          <a class="nav-link" href="/brands/all">All BrandZ</a>
+          <a class="nav-link" href="/brands/all">All Brands</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/offers/add"  th:classappend="${activeLink == 'add-offer'}? 'active'">Add Offer</a>
@@ -57,16 +57,11 @@
           </div>
         </li>
 
-        <li class="nav-item" sec:authorize="!isAuthenticated()">
-          <a class="nav-link" href="/users/register"
-             th:classappend="${activeLink == 'register'}? 'active'"
-              th:text="#{nav_bar_login_register}">Register</a>
+        <li class="nav-item" th:if="${@currentUser.isAnonymous()}">
+          <a class="nav-link" href="/users/register">Register</a>
         </li>
-        <li class="nav-item" sec:authorize=="!isAuthenticated()">
-          <a class="nav-link" href="/users/login"
-             th:classappend="${activeLink == 'login'}? 'active'"
-             th:text="#{nav_bar_login}">
-            Login
+        <li class="nav-item" th:if="${@currentUser.isAnonymous()}">
+          <a class="nav-link" href="/users/login">Login
           </a>
         </li>
 
