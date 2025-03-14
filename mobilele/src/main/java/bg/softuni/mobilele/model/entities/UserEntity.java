@@ -1,6 +1,7 @@
 package bg.softuni.mobilele.model.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -16,7 +17,8 @@ public class UserEntity extends BaseEntity{
     private String lastName;
     private boolean isActive;
     private String imageUrl;
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity>role;
 
     public String getUsername() {
