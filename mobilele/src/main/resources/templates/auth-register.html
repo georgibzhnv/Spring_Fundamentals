@@ -20,12 +20,11 @@
     <h2 class="text-center text-white">Register User</h2>
     <form th:method="post"
           th:action="@{/users/register}"
-          th:object="${registerDTO}"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label th:for="firstName" class="text-white font-weight-bold">First Name</label>
-                <input  th:field="*{firstName}"
+                <input
                         type="text"
                         class="form-control"
                        placeholder="First name"/>
@@ -36,7 +35,7 @@
             <div class="form-group col-md-6 mb-3">
                 <label th:for="lastName" class="text-white font-weight-bold">Last Name</label>
                 <input
-                        th:field="*{lastName}"
+
                        type="text"
                        class="form-control"
                        placeholder="Last name"/>
@@ -49,7 +48,7 @@
             <div class="form-group col-md-6 mb-3">
                 <label th:for="email" class="text-white font-weight-bold">Email</label>
                 <input
-                       th:field="*{email}"
+
                        type="email"
                        class="form-control"
                        placeholder="Email"/>
@@ -60,7 +59,7 @@
             <div class="form-group col-md-6 mb-3">
                 <label th:for="password" class="text-white font-weight-bold">Password</label>
                 <input
-                        th:field="*{password}"
+
                        type="password"
                        class="form-control"
                        placeholder="Password"/>
