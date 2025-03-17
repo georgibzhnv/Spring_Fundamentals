@@ -10,14 +10,14 @@
 
 <div class="header">
     <div class="logo">JUDGE V2</div>
-    <div class="menu">
-        <span>Hello, <span th:text="${username}">Username</span></span>
+    <div th:unless="${@currentUser.isAnonymous()}" class="menu">
+        <span>Hello, <span th:text="${@currentUser.username}">Username</span></span>
 
-        <div class="dropdown">
+        <div class="dropdown" th:if="${@currentUser.isAdmin()}">
             <button class="dropdown-toggle">Admin ▼</button>
             <div class="dropdown-menu">
-                <a th:href="@{/admin/users}">Manage Users</a>
-                <a th:href="@{/admin/settings}">Settings</a>
+                <a href="/exercises/add">Add Exercise</a>
+                <a href="/roles/add">Add Role</a>
             </div>
         </div>
 
