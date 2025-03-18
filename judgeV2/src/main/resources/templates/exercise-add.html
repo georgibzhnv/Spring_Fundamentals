@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<body>
+
+<!-- Exercise form container -->
+<div class="exercise-form-container">
+    <h2>Add Exercise</h2>
+
+    <form th:action="@{/exercises/add}" method="post" >
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name"  required />
+            <div class="error" th:if="${#fields.hasErrors('name')}" >Name error</div>
+        </div>
+
+        <div class="form-group">
+            <label for="startedOn">Started On Date</label>
+            <input type="date" id="startedOn"  />
+            <div class="error" th:if="${#fields.hasErrors('startedOn')}" >Date error</div>
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" id="dueDate"  />
+            <div class="error" th:if="${#fields.hasErrors('dueDate')}" >Date error</div>
+        </div>
+
+        <button type="submit" class="btn-submit">Add</button>
+    </form>
+
+    <div class="exercise-image">
+        <img src="/images/exercise.png" alt="Exercise Image" />
+    </div>
+</div>
+
+
+<!-- Include footer fragment -->
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

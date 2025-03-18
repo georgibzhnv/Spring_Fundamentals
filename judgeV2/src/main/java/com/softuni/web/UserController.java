@@ -88,4 +88,10 @@ public class UserController {
         userService.registerUser(userServiceModel);
         return "redirect:login";
     }
+
+    @GetMapping("/logout")
+    public String logout(){
+        userService.logout();
+        return "redirect:/";
+    }
 }
