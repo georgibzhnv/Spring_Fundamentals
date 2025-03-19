@@ -9,30 +9,31 @@
 <div class="exercise-form-container">
     <h2>Add Exercise</h2>
 
-    <form th:action="@{/exercises/add}" method="post" >
+    <form th:action="@{/exercises/add}" method="post"
+        th:object="${exerciseAddBindingModel}">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name"  required />
-            <div class="error" th:if="${#fields.hasErrors('name')}" >Name error</div>
+            <input th:field="*{name}" th:errorclass="bg-danger" type="text" id="name" name="name"/>
+            <small th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" >Name must be at least 2 characters!</small>
         </div>
 
         <div class="form-group">
             <label for="startedOn">Started On Date</label>
-            <input type="date" id="startedOn"  />
-            <div class="error" th:if="${#fields.hasErrors('startedOn')}" >Date error</div>
+            <input th:field="*{startedOn}" th:errorclass="bg-danger" type="datetime-local" id="startedOn"  />
+            <small th:if="${#fields.hasErrors('startedOn')}" th:errorclass="error" th:errors="*{startedOn}" >The date cannot be in the future!</small>
         </div>
 
         <div class="form-group">
             <label for="dueDate">Due Date</label>
-            <input type="date" id="dueDate"  />
-            <div class="error" th:if="${#fields.hasErrors('dueDate')}" >Date error</div>
+            <input th:field="*{dueDate}"  type="datetime-local" id="dueDate"  />
+            <small th:if="${#fields.hasErrors('dueDate')}" th:errorclass="error" th:errors="*{dueDate}">The date cannot be in the past!</small>
         </div>
 
         <button type="submit" class="btn-submit">Add</button>
     </form>
 
     <div class="exercise-image">
-        <img src="/images/exercise.png" alt="Exercise Image" />
+        <img src="/img/exercises.jpg" alt="Exercise Image" />
     </div>
 </div>
 

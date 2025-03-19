@@ -87,6 +87,7 @@ body {
 
 .dropdown {
     position: relative;
+    display: inline-block;
 }
 
 .dropdown-toggle {
@@ -99,7 +100,7 @@ body {
 }
 
 .dropdown-menu {
-    display: none;
+    display:flow;
     position: absolute;
     top: 35px;
     left: 0;
@@ -107,7 +108,7 @@ body {
     border: 1px solid #ccc;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     min-width: 120px;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .dropdown-menu a {
