@@ -31,7 +31,7 @@ footer {
     padding: 10px;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 98.5%;
 }
 
 /* Main content */
@@ -187,6 +187,47 @@ input[type="date"] {
 }
 
 .exercise-image img {
+    max-width: 250px;
+    border-radius: 8px;
+}
+
+.roles-form-container {
+    background-color: white;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.roles-form-container h2 {
+    width: 100%;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    flex: 1;
+}
+
+.checkbox-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.roles-image img {
     max-width: 250px;
     border-radius: 8px;
 }

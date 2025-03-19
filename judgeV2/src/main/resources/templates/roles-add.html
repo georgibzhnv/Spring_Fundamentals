@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<body>
+<div class="roles-form-container">
+    <h2>Add new role to user</h2>
+
+    <form th:action="@{/roles/add}" method="post">
+        <div class="form-group">
+            <label for="user">Users</label>
+            <select id="user">
+                <option value="" selected>Select user</option>
+                <option th:each="n : ${names}" th:value="${n}" th:text="${n}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Roles</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox"  value="USER" /> User</label><br>
+                <label><input type="checkbox"  value="ADMIN" /> Admin</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Add</button>
+    </form>
+
+    <div class="roles-image">
+        <img src="/img/admin-role.jpg" alt="Admin Illustration" />
+    </div>
+</div>
+
+<!-- Include footer fragment -->
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

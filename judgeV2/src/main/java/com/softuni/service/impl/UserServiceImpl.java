@@ -10,6 +10,8 @@ import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -53,5 +55,10 @@ public class UserServiceImpl implements UserService {
         currentUser.setId(null);
         currentUser.setUsername(null);
         currentUser.setRole(null);
+    }
+
+    @Override
+    public List<String> findAllUsernames() {
+        return userRepository.findAllUsernames();
     }
 }
