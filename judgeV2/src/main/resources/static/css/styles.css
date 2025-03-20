@@ -230,3 +230,33 @@ select {
 .roles-image img {
     max-width: 250px;
 }
+
+.homework-form-container {
+    background-color: white;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.homework-form-container h2 {
+    width: 40%;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.homework-form-container h3 {
+    margin-bottom: 20px;
+    color: #c0392b;
+    font-weight: bold;
+    width: 80%;
+}
+
+.homework-image img {
+    max-width: 250px;
+}

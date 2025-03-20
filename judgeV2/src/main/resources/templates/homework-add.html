@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<body>
+
+<div class="homework-form-container">
+    <h2>Add your homework</h2>
+
+    <form th:action="@{/homework/add}" method="post"
+          th:object="${homeworkAddBindingModel}">
+        <h3 th:if="${isLate}" class="error">You late</h3>
+        <div class="form-group">
+            <label for="exercise">Exercises</label>
+            <select id="exercise" name="exercise" required>
+                <option value="" selected>Select exercise</option>
+                <option th:each="ex : ${exNames}" th:value="${ex}" th:text="${ex}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gitAddress">Github address</label>
+            <input th:field="*{gitAddress}" th:errorclass="error" type="text" id="gitAddress" />
+            <div th:if="${#fields.hasErrors('gitAddress')}" th:errors="*{gitAddress}" class="error">Invalid github address</div>
+        </div>
+
+        <button type="submit" class="btn-submit">Add</button>
+    </form>
+
+    <div class="homework-image">
+        <img src="/img/homework.png" alt="Homework Illustration" />
+    </div>
+</div>
+
+<!-- Include footer fragment -->
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>
