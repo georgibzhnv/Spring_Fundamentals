@@ -200,12 +200,12 @@ input[type="date"] {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items:flex-start;
     gap: 30px;
 }
 
 .roles-form-container h2 {
-    width: 100%;
+    width: 40%;
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -220,14 +220,13 @@ form {
 }
 
 select {
-    width: 100%;
+    width: 80%;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 8px;
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
 .roles-image img {
     max-width: 250px;
-    border-radius: 8px;
 }

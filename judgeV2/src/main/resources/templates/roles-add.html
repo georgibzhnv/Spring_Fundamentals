@@ -9,18 +9,18 @@
 
     <form th:action="@{/roles/add}" method="post">
         <div class="form-group">
-            <label for="user">Users</label>
-            <select id="user">
+            <label for="username">Users</label>
+            <select name="username" id="username" required>
                 <option value="" selected>Select user</option>
                 <option th:each="n : ${names}" th:value="${n}" th:text="${n}"></option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>Roles</label>
+            <label>Roles</label><br/>
             <div class="checkbox-group">
-                <label><input type="checkbox"  value="USER" /> User</label><br>
-                <label><input type="checkbox"  value="ADMIN" /> Admin</label>
+                <label for="user"><input checked type="radio" id="user" name="role"  value="user" >User</label>
+                <label for="admin"><input type="radio" id="admin" name="role" value="admin" >Admin</label><br/>
             </div>
         </div>
 
