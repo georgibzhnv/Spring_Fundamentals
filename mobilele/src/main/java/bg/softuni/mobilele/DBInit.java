@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+
 import java.util.List;
 
 @Component
@@ -37,12 +37,12 @@ public class DBInit implements CommandLineRunner {
     public void run(String... args) throws Exception {
         BrandEntity fordBrand = new BrandEntity();
         fordBrand.setName("Ford");
-        setCurrentTimestamps(fordBrand);
+
 
 
         BrandEntity hondaBrand = new BrandEntity();
         hondaBrand.setName("Honda");
-        setCurrentTimestamps(hondaBrand);
+
 
         brandRepository.saveAll(List.of(fordBrand,hondaBrand));
 
@@ -68,7 +68,7 @@ public class DBInit implements CommandLineRunner {
         admin.setUsername("admin");
         admin.setPassword(passwordEncoder.encode("topsecret"));
         admin.setRole(List.of(adminRole,userRole));
-        setCurrentTimestamps(admin);
+
         userRepository.save(admin);
 
         UserEntity pesho = new UserEntity();
@@ -77,7 +77,7 @@ public class DBInit implements CommandLineRunner {
         pesho.setUsername("pesho");
         pesho.setPassword(passwordEncoder.encode("topsecret"));
         pesho.setRole(List.of(userRole));
-        setCurrentTimestamps(pesho);
+
 
         userRepository.saveAll(List.of(admin,pesho));
     }
@@ -92,7 +92,7 @@ public class DBInit implements CommandLineRunner {
         fiestaOffer.setDescription("Karana e ot nemska baba. Zimata v garaj.");
         fiestaOffer.setTransmission(TransmissionEnum.MANUAL);
         fiestaOffer.setModel(modelEntity);
-        setCurrentTimestamps(fiestaOffer);
+
 
         offerRepository.save(fiestaOffer);
     }
@@ -106,7 +106,7 @@ public class DBInit implements CommandLineRunner {
         escort.setStartYear(1976);
         escort.setEndYear(2002);
         escort.setBrand(ford);
-        setCurrentTimestamps(escort);
+
 
         return modelRepository.save(escort);
     }
@@ -118,7 +118,7 @@ public class DBInit implements CommandLineRunner {
         nc750s.setImageUrl("https://motorcycles.honda.bg/wp-content/uploads/sites/4/2024/10/411163_23ym_honda_nc750x1.jpg");
         nc750s.setStartYear(2014);
         nc750s.setBrand(honda);
-        setCurrentTimestamps(nc750s);
+
 
         return modelRepository.save(nc750s);
     }
@@ -130,13 +130,9 @@ public class DBInit implements CommandLineRunner {
         fiesta.setImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2017_Ford_Fiesta_Zetec_Turbo_1.0_Front.jpg/413px-2017_Ford_Fiesta_Zetec_Turbo_1.0_Front.jpg");
         fiesta.setStartYear(1976);
         fiesta.setBrand(ford);
-        setCurrentTimestamps(fiesta);
+
 
         return modelRepository.save(fiesta);
     }
 
-    private static void setCurrentTimestamps(BaseEntity baseEntity){
-        baseEntity.setUpdated(Instant.now());
-        baseEntity.setCreated(Instant.now());
-    }
 }
