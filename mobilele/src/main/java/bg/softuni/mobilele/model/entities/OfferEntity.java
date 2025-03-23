@@ -23,8 +23,8 @@ public class OfferEntity extends BaseEntity{
     @ManyToOne
     private ModelEntity model;
 
-//    @ManyToOne
-//    private UserEntity user;
+    @ManyToOne
+    private UserEntity user;
 
     public String getDescription() {
         return description;
@@ -89,14 +89,14 @@ public class OfferEntity extends BaseEntity{
     public void setModel(ModelEntity model) {
         this.model = model;
     }
-//
-//    public UserEntity getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(UserEntity user) {
-//        this.user = user;
-//    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
     @Override
     public String toString() {

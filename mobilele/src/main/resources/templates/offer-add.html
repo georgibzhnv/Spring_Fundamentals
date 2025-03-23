@@ -18,17 +18,23 @@
 <div class="container">
     <h2 class="text-center text-white">Upload Offer</h2>
     <form
-        th:action="@{/offers/add}"
-        th:method="post"
+            th:object="${offerModel}"
+            th:action="@{/offers/add}"
+            th:method="post"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="row">
 
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="model">Model</label>
-                <select id="model" class="form-control">
+                <select id="model" name="modelId" class="form-control">
                     <option value="">- Select a model -</option>
-                    <optgroup label="Brand name">
-                        <option>Model</option>
+                    <optgroup th:each="brand:${brands}"
+                              th:label="${brand.name}">
+                        <option
+                                th:each="brandModel : ${brand.models}"
+                                th:text = "${brandModel.name}"
+                                th:value = "${brandModel.id}"></option>
+
                     </optgroup>
                 </select>
                 <p class="errors alert alert-danger">
@@ -38,8 +44,9 @@
             <div class="form-group col-md-6 mb-3">
                 <label th:for="price" class="text-white font-weight-bold">Price (BGN)</label>
                 <input
+                        id="price"
+                        name="price"
                        type="number"
-                       th:errorclass="is-invalid"
                        class="form-control"
                        placeholder="Price in BGN"/>
                 <p class="invalid-feedback errors alert alert-danger">
@@ -50,17 +57,16 @@
         </div>
         <div class="row">
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" th:for="engineType">Engine</label>
-                <select
-                        th:errorclass="is-invalid"
+                <label class="text-center text-white font-weight-bold" th:for="engine">Engine</label>
+                <select id="engine"
+                        name="engine"
                         class="form-control">
                     <option value="">- Select engine type -</option>
-                    <option th:each="type: ${allEngineTypes}"
-                            th:value="${type}"
-                            th:text="${type}">
+                    <option th:each="engine: ${engines}"
+                            th:value="${engine}"
+                            th:text="${engine}">
                         IMAGINARY ENGINE
                     </option>
-
                 </select>
 
                 <p class="invalid-feedback errors alert alert-danger">
@@ -69,9 +75,13 @@
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
-                <select id="transmission" class="form-control">
+                <select id="transmission" name="transmission" class="form-control">
                     <option value="">- Select transmission type -</option>
-                    <option> Transmission type
+                    <option
+                            th:each="transmission:${transmissions}"
+                            th:values="${transmission}"
+                            th:text="${transmission}">
+                        Transmission type
                     </option>
                 </select>
                 <p class="errors alert alert-danger">
@@ -82,7 +92,7 @@
         <div class="row">
             <div class="form-group col-md-6 mb-3">
                 <label for="year" class="text-white font-weight-bold">Year</label>
-                <input id="year" type="number" min="1900" max="2099" step="1" class="form-control"
+                <input id="year" name="year" type="number" min="1900" max="2099" step="1" class="form-control"
                        placeholder="Manufacturing year"/>
                 <p class="errors alert alert-danger">
                     Manufacturing year is required.
@@ -90,9 +100,9 @@
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label th:for="mileage" class="text-white font-weight-bold">Mileage</label>
-                <input
+                <input id="mileage"
                        type="number"
-                       th:errorclass="is-invalid"
+                        name="mileage"
                        class="form-control"
                        placeholder="Mileage in kilometers"/>
                 <p class="invalid-feedback errors alert alert-danger">
@@ -104,8 +114,8 @@
         <div class="form-group">
             <label class="text-white font-weight-bold" th:for="description">Description</label>
             <textarea
-
-                th:errorclass="is-invalid"
+                name="description"
+                id="description"
                 type="textarea"
                 class="form-control"
                 rows="3"
@@ -115,7 +125,7 @@
 <!--                Description is required and should be at least 5 symbols.-->
 <!--            </p>-->
 
-            <small th:each="err : ${#fields.errors('description')}" th:text="${err}" class="text-danger"></small>
+<!--            <small th:each="err : ${#fields.errors('description')}" th:text="${err}" class="text-danger"></small>-->
 
 <!--            Alternative error display-->
 <!--            <small th:errors="*{description}" class="text-danger">Description error-->
@@ -125,7 +135,7 @@
         </div>
         <div class="form-group">
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
-            <input id="imageUrl" type="url" class="form-control"
+            <input id="imageUrl" name="imageUrl" type="url" class="form-control"
                    placeholder="Put vehicle image URL here">
             <p class="errors alert alert-danger">
                 Vehicle image URL is required.

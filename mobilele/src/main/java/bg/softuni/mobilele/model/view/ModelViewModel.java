@@ -4,6 +4,7 @@ import bg.softuni.mobilele.model.entities.enums.ModelCategory;
 
 public class ModelViewModel {
 
+    private long id;
     private String name;
     private ModelCategory category;
     private String imageUrl;
@@ -50,10 +51,19 @@ public class ModelViewModel {
         this.endYear = endYear;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ModelViewModel{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
         sb.append(", category=").append(category);
         sb.append(", imageUrl='").append(imageUrl).append('\'');
         sb.append(", startYear=").append(startYear);
