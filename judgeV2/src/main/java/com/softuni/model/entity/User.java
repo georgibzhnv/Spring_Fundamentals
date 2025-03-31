@@ -1,9 +1,8 @@
 package com.softuni.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -14,8 +13,18 @@ public class User extends BaseEntity{
     private String email;
     private String git;
     private Role role;
+    private Set<Homework>homeworkSet;
 
     public User() {
+    }
+
+    @OneToMany(mappedBy = "author",fetch = FetchType.EAGER)
+    public Set<Homework> getHomeworkSet() {
+        return homeworkSet;
+    }
+
+    public void setHomeworkSet(Set<Homework> homeworkSet) {
+        this.homeworkSet = homeworkSet;
     }
 
     @Column(name = "username",unique = true, nullable = false)

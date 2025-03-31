@@ -4,6 +4,7 @@ header {
     color: white;
     padding: 15px 0;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .navbar {
@@ -23,17 +24,6 @@ header {
     text-decoration: underline;
 }
 
-/* Footer styles */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 98.5%;
-}
-
 /* Main content */
 .container {
     max-width: 900px;
@@ -44,10 +34,33 @@ footer {
     border-radius: 5px;
 }
 
-body {
+html, body {
+    height: 100%; /* Важен е този стил, за да може height на body да бъде 100% от екрана */
     margin: 0;
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Правим body контейнера колона */
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* Това кара основното съдържание да расте и да запълва наличното пространство */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: auto; /* Това гарантира, че footer ще е на дъното */
+    box-sizing: border-box;
+}
+
 
 .header {
     display: flex;
@@ -259,4 +272,48 @@ select {
 
 .homework-image img {
     max-width: 250px;
+}
+
+.profile-container {
+    background-color: white;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-info label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile-info input,
+.profile-info textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.profile-image img {
+    max-width: 150px;
+    border-radius: 50%;
+    margin-top: 20px;
 }

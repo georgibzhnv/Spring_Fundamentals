@@ -3,6 +3,7 @@ package com.softuni.service.impl;
 import com.softuni.model.entity.RoleNameEnum;
 import com.softuni.model.entity.User;
 import com.softuni.model.service.UserServiceModel;
+import com.softuni.model.view.UserProfileViewModel;
 import com.softuni.repository.UserRepository;
 import com.softuni.security.CurrentUser;
 import com.softuni.service.RoleService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -79,5 +81,18 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) {
         return userRepository.findById(id)
                 .orElse(null);
+    }
+
+    @Override
+    public UserProfileViewModel findProfileById(Long id) {
+        User user=userRepository.findById(id)
+                .orElse(null);
+
+        UserProfileViewModel userProfileViewModel = modelMapper.map(user,UserProfileViewModel.class);
+        userProfileViewModel.setHomeworkSet(user.getHomeworkSet()
+                .stream().map(homework -> homework.getExercise().getName())
+                .collect(Collectors.toSet()));
+
+        return  userProfileViewModel;
     }
 }

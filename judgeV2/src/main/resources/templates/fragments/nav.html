@@ -23,7 +23,7 @@
 
         <a th:href="@{/comments/add}">Check Homework</a>
         <a th:href="@{/homework/add}">Add Homework</a>
-        <a th:href="@{/profile}">Profile</a>
+        <a th:href="@{/users/profile/{id}(id = ${@currentUser.id})}">Profile</a>
         <a href="/users/logout">Logout</a>
     </div>
 </div>
