@@ -1,11 +1,9 @@
 package com.softuni.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "homework")
@@ -13,9 +11,9 @@ public class Homework extends BaseEntity{
 
     private LocalDateTime addedOn;
     private String gitAddress;
-    public User author;
-    public Exercise exercise;
-
+    private User author;
+    private Exercise exercise;
+    private Set<Comment>comments;
 
     public Homework() {
     }
@@ -54,5 +52,14 @@ public class Homework extends BaseEntity{
 
     public void setExercise(Exercise exercise) {
         this.exercise = exercise;
+    }
+
+    @OneToMany(mappedBy = "homework",fetch = FetchType.EAGER)
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

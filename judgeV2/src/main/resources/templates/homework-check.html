@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<body>
+<div class="main-container">
+  <!-- Left Section: Rules for Scoring -->
+  <div class="rules-container">
+    <h3>Rules for scoring!</h3>
+    <ul>
+      <li>Download the archived file</li>
+      <li>Import the Project</li>
+      <li>Add custom/additional data if needed</li>
+      <li>Change the credentials in application properties</li>
+      <li>Test all exercises and verify the results</li>
+      <li>Write detailed comment for homework</li>
+      <li>Don't be mean with scoring :) !!!!</li>
+    </ul>
+  </div>
+
+  <!-- Center Section: Add Comments for Homework -->
+  <div class="comment-container">
+    <h3>Add Comments for Homework</h3>
+    <form action="#" method="POST">
+      <div class="form-group">
+        <label for="score">Score</label>
+        <input type="number" id="score" name="score" placeholder="Enter your score" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Enter your comment" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Add Comment</button>
+    </form>
+  </div>
+
+  <input th:value="${homework.id}" type="hidden" name="homeworkId" id="homeworkId">
+
+  <!-- Right Section: Download Homework -->
+  <div class="download-container">
+    <h3>Download homework</h3>
+    <a th:href="${homework.gitAddress + '/archive/master.zip'}">
+    <button class="btn-download" >Download</button>
+    </a>
+  </div>
+</div>
+
+<!-- Include footer fragment -->
+<th:block th:include="~{fragments/footer}"></th:block>
+</body>
+</html>

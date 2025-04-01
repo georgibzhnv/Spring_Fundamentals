@@ -317,3 +317,122 @@ select {
     border-radius: 50%;
     margin-top: 20px;
 }
+
+/* Main Container */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 40px;
+}
+
+/* Left Section: Rules for Scoring */
+.rules-container {
+    width: 30%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.rules-container h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.rules-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.rules-container li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Center Section: Add Comments for Homework */
+.comment-container {
+    width: 40%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.comment-container h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+/* Right Section: Download Homework */
+.download-container {
+    width: 25%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.download-container h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.btn-download {
+    background-color: #1E88E5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.btn-download:hover {
+    background-color: #1565C0;
+}
