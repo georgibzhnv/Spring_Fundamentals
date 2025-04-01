@@ -47,4 +47,10 @@ public class HomeworkServiceImpl implements HomeworkService {
                 .map(homework -> modelMapper.map(homework,HomeworkServiceModel.class))
                 .orElse(null);
     }
+
+    @Override
+    public Homework findById(Long homeworkId) {
+        return homeworkRepository.findById(homeworkId)
+                .orElse(null);
+    }
 }

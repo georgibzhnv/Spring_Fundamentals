@@ -1,5 +1,6 @@
 package com.softuni.service;
 
+import com.softuni.model.entity.Homework;
 import com.softuni.model.service.HomeworkServiceModel;
 import jakarta.validation.constraints.Pattern;
 
@@ -8,4 +9,6 @@ public interface HomeworkService {
             ,message = "Enter valid git address!") String gitAddress);
 
     HomeworkServiceModel findHomeworkForScoring();
+
+    Homework findById(Long homeworkId);
 }
