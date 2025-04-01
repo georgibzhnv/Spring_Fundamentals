@@ -5,6 +5,65 @@
 
 <body>
 
+
+<div>
+    <div>
+        <h2>Active Exercises</h2>
+        <ol>
+            <li th:each="ex:${exercises}" th:text="${ex}">Active exercise one</li>
+        </ol>
+    </div>
+</div>
+
+<!--        <h2>Top students</h2>-->
+<!--        <ol>-->
+<!--            <li th:each="ex:${exercises}" th:text="${ex}">Active exercise one</li>-->
+<!--        </ol>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- Създаване на графиката чрез JavaScript -->
+<div style="max-width: 400px;">
+    <div>
+    <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+<!-- Създаване на графика -->
+<script th:inline="javascript">
+    // Извличаме средната оценка от Thymeleaf
+    var avgScore =/*[[${avg}]]*/'0';
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2018-Q2', '2018-Q3', '2018-Q4', '2019-Q1', '2019-Q2', '2019-Q3', '2019-Q4'], // Месец/квартал
+            datasets: [{
+                label: 'Average Score',
+                data: [avgScore, avgScore, avgScore, avgScore, avgScore, avgScore, avgScore], // Поставяме средната оценка за всеки период
+                borderColor: 'blue',
+                backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+</script>
+
 <!-- Include footer fragment -->
 <th:block th:include="~{fragments/footer}"></th:block>
 </body>

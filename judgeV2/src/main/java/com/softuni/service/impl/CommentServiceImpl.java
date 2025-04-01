@@ -35,4 +35,9 @@ public class CommentServiceImpl implements CommentService {
 
         commentRepository.save(comment);
     }
+
+    @Override
+    public Double findAvgScore() {
+        return commentRepository.findAvgScore();
+    }
 }
